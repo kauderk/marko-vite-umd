@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'vite'
 import marko from '@marko/vite'
 const name = 'extension'
@@ -20,7 +19,7 @@ export default defineConfig({
     minify: 'terser',
     ssr: false,
     lib: {
-      entry: 'src/index.js',
+      entry: 'src/index.ts',
       formats: ['umd'],
       name,
       fileName: `${name}.js`,

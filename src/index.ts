@@ -1,4 +1,3 @@
-// @ts-check
 import indexPage from './button.marko'
 
 console.log('indexPage', indexPage)
