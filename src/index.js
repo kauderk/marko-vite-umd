@@ -1,5 +1,5 @@
 // @ts-check
-import indexPage from './pages/index'
+import indexPage from './button.marko'
 
 console.log('indexPage', indexPage)
 var result = indexPage.renderSync({})
