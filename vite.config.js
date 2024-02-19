@@ -19,6 +19,7 @@ export default defineConfig({
 
     sourcemap: true,
     minify: false,
+
     lib: {
       entry: 'src/index.js',
       formats: ['umd'],

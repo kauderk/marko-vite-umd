@@ -1,4 +1,7 @@
+// @ts-check
 import indexPage from './pages/index'
 
 console.log('indexPage', indexPage)
-export default indexPage
+var result = indexPage.renderSync({})
+
+result.appendTo(document.body)
