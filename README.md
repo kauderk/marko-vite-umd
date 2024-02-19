@@ -1,15 +1,9 @@
-Marko Vite project from dev.to post
+Marko Vite UMD Starter
 ==================================
 
 ## Getting Started
 
 ```bash
 npm install
-npm run dev
-```
-
-## Production Build
-```bash
 npm run build
-npm start
 ```

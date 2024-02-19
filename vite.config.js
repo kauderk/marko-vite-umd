@@ -1,8 +1,7 @@
 // @ts-check
 import { defineConfig } from 'vite'
 import marko from '@marko/vite'
-const name = 'LinklipExtension'
-const dev = process.env.NODE_ENV !== 'production'
+const name = 'extension'
 
 /**
  * @type {import('vite').UserConfigExport}
@@ -16,10 +15,9 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Server and client builds should output assets to the same folder.
     emptyOutDir: false, // Avoid server / client deleting files from each other.
-
     sourcemap: true,
-    minify: false,
-
+    minify: 'terser',
+    ssr: false,
     lib: {
       entry: 'src/index.js',
       formats: ['umd'],
