@@ -1,9 +1,4 @@
-import { Router } from "express";
-import indexPage from "./pages/index";
-import goodbyePage from "./pages/goodbye";
-import countersPage from "./pages/counters";
+import { Router } from 'express'
+import indexPage from './pages/index'
 
-export default Router()
-  .get("/", indexPage)
-  .get("/goodbye", goodbyePage)
-  .get("/counters", countersPage);
+export default Router().get('/', indexPage)
