@@ -13,3 +13,6 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## TODO
+- remove server logic from build output

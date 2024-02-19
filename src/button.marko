@@ -1,8 +1,11 @@
-<let/count=10/>
-<p>Counter: ${count}</p>
-<button onClick() { count++; }>
-	+1
-</button>
-<button onClick() { count--; }>
-	-1
-</button>
+static const TRAFFIC_LIGHTS = ["red", "orange", "green"];
+let/lightIndex=0
+const/light=TRAFFIC_LIGHTS[lightIndex]
+button onClick() { lightIndex = (lightIndex + 1) % TRAFFIC_LIGHTS.length; }
+	-- Next light
+p -- Light is ${light}
+p
+	-- You must&nbsp
+	if=light === "red" -- STOP
+	else-if=light === "orange" -- SLOW DOWN
+	else -- GO
