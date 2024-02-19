@@ -5,5 +5,11 @@ Marko Vite UMD Starter
 
 ```bash
 npm install
+npm run dev
+```
+
+## Build
+
+```bash
 npm run build
 ```

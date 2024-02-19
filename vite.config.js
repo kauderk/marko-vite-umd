@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite'
 import marko from '@marko/vite'
 const name = 'extension'
+const dev = process.env.NODE_ENV !== 'production'
 
 /**
  * @type {import('vite').UserConfigExport}

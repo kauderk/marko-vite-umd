@@ -1,7 +1,7 @@
 {
-  "name": "marko-vite",
-  "description": "Sample app that demonstrates the power of building UI components using Marko and Vite",
-  "version": "1.0.0",
+  "name": "marko-umd",
+  "description": "Demo: Marko + Vite + UMD",
+  "version": "0.0.1",
   "dependencies": {
     "@marko/express": "^1.0.0",
     "compression": "^1.7.4",
@@ -20,6 +20,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_ENV=production vite build"
+    "build": "cross-env NODE_ENV=production vite build",
+    "dev": "cross-env NODE_ENV=development vite"
   }
 }
