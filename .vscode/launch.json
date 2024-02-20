@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Marko App (Launch)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "serverReadyAction": {
+        "action": "debugWithEdge",
+        "pattern": "\\bLocal: (http?://\\S+)",
+        "uriFormat": "http://localhost:3000?%s"
+      }
+    }
+  ]
+}

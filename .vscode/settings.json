@@ -1,0 +1,5 @@
+{
+  "[marko]": {
+    "editor.formatOnSave": false // why? I find it to be too opinionated when it comes to new lines or breaking lines
+  }
+}
