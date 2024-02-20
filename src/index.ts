@@ -4,4 +4,4 @@ console.log('indexPage', indexPage)
 var result = indexPage.renderSync({})
 
 // @ts-expect-error
-result.appendTo(window.app)
+result.appendTo(window.markoApp)
