@@ -1,17 +1,31 @@
-$ const personPromise = new Promise<{name:string}>((resolve) => {
-  setTimeout(() => resolve({ name: "World" }), 1000);
+static type Payload = {name:string}
+
+<!-- to debug: comment out the promise declarations each at a time -->
+
+<!-- works -->
+<!-- const/promise = new Promise<Payload>((resolve) => {
+	setTimeout(() => resolve({value:[{name:'Mars'}]}), 1000)
+}); -->
+
+<!-- works -->
+<!-- $ const promise = new Promise<Payload>((resolve) => {
+	setTimeout(() => resolve({name:'Jupiter'}), 1000)
+}); -->
+
+<!-- doesn't work -->
+const/promise = new Promise<Payload>((resolve) => {
+	setTimeout(() => resolve({name:'Saturn'}), 1000)
 });
 
-client-await from=personPromise
-  @placeholder
-    <!-- Displays while promise is pending -->
-    label
-      -- Loading…
-      progress
+client-await from=promise
+	@placeholder
+		label
+			-- Pending…
+			progress
 
-  @then|person|
-    <!-- Displays if promise resolves -->
-    p -- Hello ${person.name}!
+	@then|planet|
+		<!-- debugger: add a breakpoint -->
+		p -- Hello ${planet.name}!
 
-  @catch|err|
-    -- <!-- Displays if promise rejects -->${err.name} error: ${err.message}
+	@catch|err|
+		-- ${err.name} error: ${err.message}

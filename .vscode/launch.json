@@ -10,7 +10,7 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "openOnFirstSessionStart",
       "serverReadyAction": {
-        "action": "debugWithEdge",
+        "action": "debugWithChrome",
         "pattern": "\\bLocal: (http?://\\S+)",
         "uriFormat": "http://localhost:3000?%s"
       }
