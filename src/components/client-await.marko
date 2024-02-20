@@ -9,35 +9,32 @@ static const LOADING = 0
 static const RESOLVED = 1
 static const REJECTED = 2
 
-class {
-	state = { settled: LOADING, value: <T | E | undefined>undefined}
-	onCreate(input: Input<T,E>) {
-		this.onInput(input)
-	}
-	onInput(input: Input<T,E>) {
-		var state = this.state
-		input.from.then(
-			function(value) {
-				state.settled = RESOLVED
-				state.value = value
-			},
-			function(value) {
-				state.settled = REJECTED
-				state.value = value
-			}
-		)
-	}
+let/status = { settled: LOADING, value: <T | E | undefined>undefined}
+let/onInput = (input: Input<T,E>) => {
+	input.from.then(
+		function(value) {
+			status = { settled: RESOLVED, value }
+		},
+		function(value) {
+			status = { settled: REJECTED, value }
+		}
+	)
 }
+lifecycle onMount() { onInput(input) } onUpdate() { onInput(input) }
+
 // https://discord.com/channels/725013179465203793/725013179926708226/1095341406060556390
 // https://gist.github.com/DylanPiercey/9d65759ffa4ff7752a2bc8aa74f5da40
 // Is this ok?
-if(!isNaN(state.settled))
-	$ const renderer = (
-		state.settled === RESOLVED
+if=!isNaN(status.settled)
+	const/renderer = (
+		status.settled === RESOLVED
 			? input.then
-			: state.settled === REJECTED
+			: status.settled === REJECTED
 			? input.catch
 			: input.placeholder
 	)
-	// @ts-expect-error
-	$ renderer.renderBody((out), state.value)
+	// @ts-expect-erro
+	// let/f= renderer.renderBody((out), status.value)
+	effect() { 
+		console.log(`renderer.renderBody((out), status.value)`)
+	}
