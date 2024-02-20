@@ -6,7 +6,6 @@ export interface Input {
 	timeout: number;
 }
 
-static var isBrowser = typeof window !== "undefined";
 static var LOADING = 0;
 static var RESOLVED = 1;
 static var REJECTED = 2;
@@ -18,49 +17,15 @@ export interface State {
 	settled: number;
 	value: Input["from"] | undefined;
 }
-static function syncSSRPromise(state: State, value: State["value"]) {
-	if (!(value && "_settled" in value)) return false;
-	if (typeof value._settled !== 'number' || value._settled === LOADING) {
-		throw new Error("Was unable to serialize promise data from server");
-	}
 
-	state.settled = value._settled;
-	// @ts-expect-error
-	state.value = value._value;
-	return true;
-}
 class {
-	hasMounted = false;
 	state = { settled: LOADING, value: <State["value"]>undefined}
 	onCreate(input: Input) {
-		var value = input.from;
-		if (isBrowser) {
-			var state = { settled: LOADING, value: undefined };
-			syncSSRPromise(state, value);
-			this.state = state;
-		} else if (isPromise(value)) {
-			var resolvedData = { _settled: LOADING, _value: undefined };
-			// @ts-expect-error
-			value.toJSON = function() {
-				return resolvedData;
-			};
-			value.then(
-				function(value) {
-					resolvedData._settled = RESOLVED;
-					resolvedData._value = value;
-				},
-				function(err) {
-					resolvedData._settled = REJECTED;
-					resolvedData._value = err;
-				}
-			);
-		}
+		this.onInput(input);
 	}
 	onInput(input: Input) {
-		if (!(isBrowser && this.hasMounted)) return
 		var state = this.state;
 		var value = input.from;
-		if (syncSSRPromise(state, value)) return;
 		
 		if (isPromise(value)) {
 			state.settled = LOADING;
@@ -79,11 +44,8 @@ class {
 			state.value = value;
 		}
 	}
-	onMount() {
-		this.hasMounted = true;
-	}
 }
-<if(isBrowser)>
+<if(state.settled)>
 	$ var renderer = (
 		state.settled === RESOLVED
 			? input.then
@@ -94,6 +56,3 @@ class {
 	// @ts-expect-error
 	$ renderer && renderer.renderBody && renderer.renderBody((out), state.value);
 </if>
-<else>
-	<await(input.from) then=input.then catch=input.catch timeout=input.timeout/>
-</else>
