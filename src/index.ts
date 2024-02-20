@@ -1,7 +1,7 @@
 import indexPage from './button.marko'
 
 console.log('indexPage', indexPage)
-var result = indexPage.renderSync({})
-
-// @ts-expect-error
-result.appendTo(window.markoApp)
+indexPage.render({}).then((result) => {
+  // @ts-expect-error
+  result.appendTo(window.markoApp)
+})

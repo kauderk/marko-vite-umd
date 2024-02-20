@@ -1,20 +1,17 @@
-static const TRAFFIC_LIGHTS = ["red", "orange", "green"]
-let/lightIndex=0
-const/light=TRAFFIC_LIGHTS[lightIndex]
+$ const personPromise = new Promise<{name:string}>((resolve) => {
+  setTimeout(() => resolve({ name: "Frank" }), 1000);
+});
 
-button onClick() { 
-	lightIndex = (lightIndex + 1) % TRAFFIC_LIGHTS.length
-}
-	-- Next light
-p 
-	-- Light is ${light}
-p
-	-- You must&nbsp
-	if     =light === "red"    -- STOP
-	else-if=light === "orange" -- SLOW DOWN
-	else                       -- GO
+await(personPromise) client-reorder
+  @placeholder
+    <!-- Displays while promise is pending -->
+    label
+      -- Loading…
+      progress
 
-ul
-	for|color| of=TRAFFIC_LIGHTS
-		li
-			-- ${color}
+  @then|person|
+    <!-- Displays if promise resolves -->
+    p -- Hello ${person.name}!
+
+  @catch|err:any|
+    -- <!-- Displays if promise rejects -->${err.name} error: ${err.message}
