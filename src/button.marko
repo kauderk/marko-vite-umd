@@ -8,14 +8,14 @@ static type Payload = {name:string}
 }); -->
 
 <!-- works -->
-<!-- $ const promise = new Promise<Payload>((resolve) => {
+$ const promise = new Promise<Payload>((resolve) => {
 	setTimeout(() => resolve({name:'Jupiter'}), 1000)
-}); -->
+});
 
 <!-- doesn't work -->
-const/promise = new Promise<Payload>((resolve) => {
+<!-- const/promise = new Promise<Payload>((resolve) => {
 	setTimeout(() => resolve({name:'Saturn'}), 1000)
-});
+}); -->
 
 client-await from=promise
 	@placeholder

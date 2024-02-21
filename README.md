@@ -16,7 +16,7 @@ VsCode: Launch the `Marko App (Launch)` debug configuration or press `F5`.
 
 Terminal: `npm run build`
 
-> Note: To prove it is an UMD. Go to any browser page, create a html element `<div id="markoApp"></div>`, open the console and paste the `dist/extension.js` content. The Marko app should be rendered in the browser.
+> Note: To prove it is an UMD. Open any website then the console and paste the `dist/extension.js` content. The Marko app should be rendered in the page. You may create a html element `<div id="markoApp"></div>` to specify the mount point.
 
 ## TODO
 - remove server logic from build (umd) output
